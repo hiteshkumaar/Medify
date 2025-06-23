@@ -41,7 +41,7 @@ const SearchResults = () => {
         <div className='SearchResults' >
             <div className='commonContainer resultsBody'>
                 <div className='resultsHead'>
-                    <h5>{foundHospitals.noSearchYet ? headline0 : `${foundHospitals?.hospitals?.length} medical centers available in ${foundHospitals?.stateName}`}</h5>
+                    <h2>{foundHospitals.noSearchYet ? headline0 : `${foundHospitals?.hospitals?.length} medical centers available in ${foundHospitals?.cityName}`}</h2>
                     <p>
                         <img src={checkIcon} alt='check icon' className='checkIcon'/>
                         <span>{subText}</span>
