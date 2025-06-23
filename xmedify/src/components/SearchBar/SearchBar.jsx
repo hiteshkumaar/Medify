@@ -151,36 +151,50 @@ return (
   <>
     <div id="state">
       <span className='inputWrapper'>
-        <img src={location}/>
-        <input 
-          type='text' 
-          value={stateName} 
-          name='state' 
+        <img src={location} />
+        <select
+          name='state'
+          value={stateName}
           onChange={handleChange}
-          placeholder='state'
           required
-        />
-        <SearchPop locations={filteredStates} clickFunction={clickStateSuggestions}/>
+        >
+          <option value="" disabled>Select a state</option>
+          {allSates.map((state) => (
+            <option key={state} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
       </span>
     </div>
 
     <div id="city" className={disableCityInput}>
       <span className='inputWrapper'>
-        <img src={fetchingCities.current ? loadingIcon : location} className={fetchingCities.current ? 'rotateLoad' : null}/>
-        <input 
-          type='text' 
-          value={cityName} 
-          name='city' 
-          onChange={handleChange}
-          placeholder={fetchingCities.current ? "Fetching cities..." : 'city'}
-          required
-          disabled={disableCityInput === "disableCityInput"}
+        <img
+          src={fetchingCities.current ? loadingIcon : location}
+          className={fetchingCities.current ? 'rotateLoad' : null}
         />
-        <SearchPop locations={filteredCities} clickFunction={clickCitySuggetions}/>
+        <select
+          name='city'
+          value={cityName}
+          onChange={handleChange}
+          required
+          disabled={disableCityInput === 'disableCityInput'}
+        >
+          <option value="" disabled>
+            {fetchingCities.current ? 'Fetching cities...' : 'Select a city'}
+          </option>
+          {allCities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
       </span>
     </div>
   </>
 );
+
 
     }
 
