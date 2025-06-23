@@ -147,37 +147,41 @@ const SearchBar = props => {
             </span>
         )
     }
-        return( 
-            <>
-            <span className='inputWrapper'>
-                <img src={location}/>
-                <input 
-                type='text' 
-                value={stateName} 
-                name='state' 
-                onChange={handleChange}
-                placeholder='state'
-                id='state'
-                required
-                />
-                <SearchPop locations={filteredStates} clickFunction={clickStateSuggestions}/>
-            </span>
-            
-            <span className={`inputWrapper ${disableCityInput}`}>
-                <img src={fetchingCities.current ? loadingIcon : location} className={fetchingCities.current ? 'rotateLoad' : null}/>
-                <input 
-                type='text' 
-                value={cityName} 
-                name='city' 
-                onChange={handleChange}
-                placeholder={fetchingCities.current ? "Fetching cities..." :'city'}
-                required
-                disabled={displayInputs ? false : true}
-                />
-                <SearchPop locations={filteredCities} clickFunction={clickCitySuggetions}/>
-            </span>
-            </>
-        )
+return (
+  <>
+    <div id="state">
+      <span className='inputWrapper'>
+        <img src={location}/>
+        <input 
+          type='text' 
+          value={stateName} 
+          name='state' 
+          onChange={handleChange}
+          placeholder='state'
+          required
+        />
+        <SearchPop locations={filteredStates} clickFunction={clickStateSuggestions}/>
+      </span>
+    </div>
+
+    <div id="city" className={disableCityInput}>
+      <span className='inputWrapper'>
+        <img src={fetchingCities.current ? loadingIcon : location} className={fetchingCities.current ? 'rotateLoad' : null}/>
+        <input 
+          type='text' 
+          value={cityName} 
+          name='city' 
+          onChange={handleChange}
+          placeholder={fetchingCities.current ? "Fetching cities..." : 'city'}
+          required
+          disabled={disableCityInput === "disableCityInput"}
+        />
+        <SearchPop locations={filteredCities} clickFunction={clickCitySuggetions}/>
+      </span>
+    </div>
+  </>
+);
+
     }
 
     return (
